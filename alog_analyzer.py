@@ -628,17 +628,6 @@ class App(tk.Tk):
                     x2 = x1 + 2
                 canvas.create_rectangle(x1, y1, x2, y0,
                                          fill=color, outline="")
-                # 동작 시간 텍스트 (블록 위)
-                dur = int(r["duration"])
-                dur_txt = f"{dur//60}분{dur%60}초" if dur >= 60 else f"{dur}초"
-                bw = x2 - x1
-                if bw >= 50:
-                    canvas.create_text((x1+x2)//2, y1 - 4, text=dur_txt,
-                                       fill=color, font=FONT_SMALL, anchor="s")
-                elif bw >= 8:
-                    canvas.create_text((x1+x2)//2, y1 - 3, text=dur_txt,
-                                       fill=color, font=FONT_SMALL,
-                                       angle=90, anchor="s")
                 self._graph_rects.append((r, x1, x2, device))
 
         # Y축 구분선
