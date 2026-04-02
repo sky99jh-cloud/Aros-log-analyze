@@ -39,6 +39,17 @@ def parse_alog(filepath):
             ts_positions.append((i, dt, val))
             prev_val = val
 
+    # 헤더 오탐 제거: 최빈 날짜 기준 ±7일 벗어난 레코드 필터링
+    if ts_positions:
+        from collections import Counter
+        date_counts = Counter(dt.date() for _, dt, _ in ts_positions)
+        modal_date = date_counts.most_common(1)[0][0]
+        modal_ref = datetime.datetime(modal_date.year, modal_date.month, modal_date.day)
+        ts_positions = [
+            (pos, dt, val) for pos, dt, val in ts_positions
+            if abs((dt - modal_ref).total_seconds()) <= 7 * 86400
+        ]
+
     # 레코드 빌드
     records = []
     for idx, (pos, dt, val) in enumerate(ts_positions):
