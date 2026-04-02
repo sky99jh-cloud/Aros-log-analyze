@@ -530,22 +530,6 @@ class App(tk.Tk):
                     text=str(r["no"]),
                     fill=DARK_BG, font=FONT_SMALL)
 
-            # 블록 위에 동작 시간 표시
-            dur = int(r["duration"])
-            dur_txt = f"{dur//60}분 {dur%60}초" if dur >= 60 else f"{dur}초"
-            block_w = x2 - x1
-            cx = (x1 + x2) // 2
-            if block_w >= 60:
-                # 가로로 표시
-                canvas.create_text(cx, y1 - 10,
-                                   text=dur_txt,
-                                   fill=ACCENT2, font=FONT_SMALL, anchor="s")
-            elif block_w >= 8:
-                # 세로로 표시 (회전)
-                canvas.create_text(cx, y1 - 6,
-                                   text=dur_txt,
-                                   fill=ACCENT2, font=FONT_SMALL,
-                                   angle=90, anchor="s")
 
         # ── 기준선 (0레벨) 실선 ──
         canvas.create_line(ML, y0, ML + draw_w, y0,
