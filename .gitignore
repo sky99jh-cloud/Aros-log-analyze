@@ -1,0 +1,11 @@
+# 원본 로그 바이너리 및 추출 결과
+log/
+*.ALog
+*.alog
+*_추출.txt
+*_알람로그_*.txt
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
